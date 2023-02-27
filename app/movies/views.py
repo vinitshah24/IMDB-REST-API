@@ -80,32 +80,21 @@ from movies.pagination import WatchListPagination, WatchListLOPagination, WatchL
 #         else:
 #             return Response(serializer.errors)
 
+# @extend_schema_view(
+#     list=extend_schema(description='view list description'),
+#     retrieve=extend_schema(description='view retrieve description'),
+#     extended_action=extend_schema(description='view extended action description'),
+#     raw_action=extend_schema(description='view raw action description'),
+# )
 @extend_schema(tags=['Genre'])
-@extend_schema_view(
-    list=extend_schema(description='view list description'),
-    retrieve=extend_schema(description='view retrieve description'),
-    extended_action=extend_schema(description='view extended action description'),
-    raw_action=extend_schema(description='view raw action description'),
-)
 class GenreViewSet(viewsets.ModelViewSet):
     queryset = Genre.objects.all()
     serializer_class = GenreSerializer
-
-    # def get_queryset(self):
-    #     Genre.refresh_from_db()
-    #     return Genre.objects.all()
-
-    # permission_classes = [IsAdminOrReadOnly]
-    # throttle_classes = [AnonRateThrottle]
+    permission_classes = [IsAdminOrReadOnly]
+    throttle_classes = [AnonRateThrottle]
 
 
 @extend_schema(tags=['Stream Platform'])
-@extend_schema_view(
-    list=extend_schema(description='view list description'),
-    retrieve=extend_schema(description='view retrieve description'),
-    extended_action=extend_schema(description='view extended action description'),
-    raw_action=extend_schema(description='view raw action description'),
-)
 class StreamPlatformViewSet(viewsets.ModelViewSet):
     queryset = StreamPlatform.objects.all()
     serializer_class = StreamPlatformSerializer
@@ -113,7 +102,7 @@ class StreamPlatformViewSet(viewsets.ModelViewSet):
     throttle_classes = [AnonRateThrottle]
 
 
-@extend_schema(tags=['Video Content'])
+@ extend_schema(tags=['Video Content'])
 class VideoContentListAPIView(APIView):
 
     permission_classes = [IsAdminOrReadOnly]
@@ -133,7 +122,7 @@ class VideoContentListAPIView(APIView):
             return Response(serializer.errors)
 
 
-@extend_schema(tags=['Video Content'])
+@ extend_schema(tags=['Video Content'])
 class VideoContentDetailAPIView(APIView):
 
     permission_classes = [IsAdminOrReadOnly]
@@ -191,7 +180,7 @@ class VideoContentDetailAPIView(APIView):
 #         return self.create(request, *args, **kwargs)
 
 
-@extend_schema(tags=['Review'])
+@ extend_schema(tags=['Review'])
 class ReviewCreate(generics.CreateAPIView):
     serializer_class = ReviewSerializer
     permission_classes = [IsAuthenticated]
@@ -220,7 +209,7 @@ class ReviewCreate(generics.CreateAPIView):
         serializer.save(video_content=movie, review_user=review_user)
 
 
-@extend_schema(tags=['Review'])
+@ extend_schema(tags=['Review'])
 class ReviewDetail(generics.RetrieveUpdateDestroyAPIView):
 
     queryset = Review.objects.all()
@@ -230,7 +219,7 @@ class ReviewDetail(generics.RetrieveUpdateDestroyAPIView):
     throttle_scope = 'review-detail-throttle'
 
 
-@extend_schema(tags=['Review'])
+@ extend_schema(tags=['Review'])
 class ReviewList(generics.ListAPIView):
 
     serializer_class = ReviewSerializer
