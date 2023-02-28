@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'django_filters',
     'drf_spectacular',
+    'django_extensions',
     'movies'
 ]
 
@@ -62,10 +63,10 @@ TEMPLATES = [
 WSGI_APPLICATION = 'app.wsgi.application'
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': BASE_DIR / 'db.sqlite3',
-    # }
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
     # 'default': {
     #     'ENGINE': 'django.db.backends.mysql',
     #     'NAME': env("DB_NAME"),
@@ -74,12 +75,12 @@ DATABASES = {
     #     'HOST': env("DB_HOST"),
     #     'PORT': env("DB_PORT"),
     # }
-    'default': {
-        'ENGINE': 'django.db.backends.oracle',
-        'NAME': '127.0.0.1:1521/orcl',
-        'USER': 'system',
-        'PASSWORD': 'admin',
-    }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.oracle',
+    #     'NAME': '127.0.0.1:1521/orcl',
+    #     'USER': 'system',
+    #     'PASSWORD': 'admin',
+    # }
 }
 
 AUTH_PASSWORD_VALIDATORS = [

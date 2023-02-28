@@ -13,6 +13,8 @@ class ReviewSerializer(serializers.ModelSerializer):
 
 class VideoContentSerializer(serializers.ModelSerializer):
     reviews = ReviewSerializer(many=True, read_only=True)
+    # genre = serializers.StringRelatedField()
+    # platform = serializers.StringRelatedField()
 
     class Meta:
         model = VideoContent
@@ -33,6 +35,7 @@ class StreamPlatformSerializer(serializers.ModelSerializer):
     class Meta:
         model = StreamPlatform
         fields = "__all__"
+
 
 class GenreSerializer(serializers.ModelSerializer):
 
